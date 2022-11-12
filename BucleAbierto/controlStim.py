@@ -6,11 +6,14 @@ Created on Fri Sep 30 22:57:50 2022
 
 Clase para el control del estimulador. Hereda de la clase Stimulador, por lo que
 posee los mismos métodos, parámetros y constantes de la clase padre. La llamada
-al constructor realizará la conexión con el estimulador. Cada uno de
-los metodos permitirá programar estimulaciones.
-
+al constructor realizará la conexión con el estimulador. Se puede usar
+el método para enviar el WATCHDOG de la calse padre y el método de esta clase
+sendSignal para generar cualquier secuencia de estimulación deseada.
+después de la línea if __name__ == "__main__": Se puede ver un ejemplo de uso
+de esta clase con una secuencia de estimulaciones modulada trapezoidalmente
 """
 
+import platform
 from pyRehastim import Stimulator
 import serial.tools.list_ports as list_ports
 import time
@@ -33,12 +36,16 @@ class CntrlStim(Stimulator):
         None.
 
         '''
-        self.t_a = (msi-.8)*1e-3 #se le resta uno debido al restardo medido experimentalemte (veáse np5)
         try:
             print("Conectando con Rehastim")
+            #Verificar sistema operativo (los nombres de los puertos se llaman de forma distinta)
+            if platform.system() == 'Windows':
+                port_name = 'COM'
+            elif platform.system() == 'Linux':
+                port_name = 'ttyUSB'
             #Escanea el puerto en busca del ttyUSB0 (Puerto USB donde está conectado el rehastim)
             for p in list_ports.comports():
-                if 'ttyUSB' in p[0]: #'ACM'
+                if port_name in p[0]:
                     puerto_info = p
 
             #---------------------------------------------------------------------
@@ -68,8 +75,9 @@ class CntrlStim(Stimulator):
             corresponde al canal 1 y el 7 al canal 8
         vector : list, optional
             Es la secuencia de estimulación, cada entrada de la lista debe contener
-            una tupla de la forma (pw,c), donde pw es el ancho de pulso y c es la
-            corriente a estimualar. El valor por defecto es trapezoidal_prueba.
+            una tupla de la forma (pw,msi,c), donde pw es el ancho de pulso, c es la
+            msi es el main stimulation interval
+            corriente a estimular. El valor por defecto es trapezoidal_prueba.
 
         Returns
         -------
@@ -79,7 +87,7 @@ class CntrlStim(Stimulator):
         for pw,msi,c in vector:
             #Enviar una corriente en el modo de pulso simple, el channel recibe un numero del 0 al 7
             super().send_packet(super().SINGLEPULSE, channel=canal, pulse_width=pw, current=c)
-            time.sleep(self.t_a-pw*1e-6)
+            time.sleep((msi-.8)*1e-3-pw*1e-6)
 
     def exitStim(self):
         """
@@ -96,12 +104,13 @@ if __name__ == "__main__":
     t_bajada = 100
     t_meseta = 100
     corriente_max = 10
+    pulse_width = 300
     msi = 10
 
     t,vector = getTrapecio(t_subida,t_bajada,t_meseta,msi,corriente_max)
     print(vector)
-    vector=[(300,c) for c in vector] #se le pega el ancho de pulso en us
-    prueba = CntrlStim(msi)
+    vector=[(pulse_width,msi,c) for c in vector] #se le pega el ancho de pulso en us
+    prueba = CntrlStim()
     try:
         while(True):
             prueba.sendSignal(6,vector) #canal 8
