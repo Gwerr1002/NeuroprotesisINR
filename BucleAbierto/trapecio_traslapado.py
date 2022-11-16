@@ -50,7 +50,7 @@ for a in v:
 c2 = [c for _,msi,c,canal in v if canal == 7]
 
 if __name__ == '__main__':
-    prueba = controlStim()
+    prueba = CntrlStim()
     for _ in range(10):
         prueba.sendSignal(v)
     prueba.exitStim()
