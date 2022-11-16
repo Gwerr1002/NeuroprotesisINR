@@ -38,10 +38,9 @@ msi = 20
 pulse_width = 400
 t_subida = 100
 t_bajada = 100
-tiempo = 10 #En segundos
+tiempo = 13.5 #En segundos
 
 class open_loop():
-
     def __init__(self,tiempo, cadency, dutycycle, max_current1,max_current2,msi, pw,t_ascent, t_descent,channels = (6,7)):
 
         #canales del estimulador que se usaran
@@ -61,6 +60,7 @@ class open_loop():
 
         #Numero de interaciones necesarias para cumplir con el tiempo dado
         self.N = int(round(tiempo/periodo_zancada))
+        print(self.N)
 
         #Control del registro de datos (guardar secuencia de estimulación desde el inicio del programa)
         self.t0 = time.time() #inicio del programa
@@ -102,12 +102,12 @@ class open_loop():
 
     def loop(self):
         for _ in range(self.N):
-            Thread(target=playsound,args=("sin.wav",)).start()
+            #Thread(target=playsound,args=("sin.wav",)).start()
             self.tch1.append(time.time())
             self.c_stim.sendSignal(self.channels[0],self.vector1)
             self.tch2.append(time.time())
             self.c_stim.sendSignal(self.channels[1],self.vector2)
-            if not self.end.is_set():
+            if self.end.is_set():
                 break
         self.c_stim.port.close()
         self.c_stim.exitStim()
@@ -118,11 +118,13 @@ class open_loop():
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    programa = open_loop(tiempo,cadency, dutycycle, corriente_max,msi, pulse_width,t_subida, t_bajada,channels = (7,6))
+    programa = open_loop(tiempo,cadency, dutycycle, corriente_max_1,corriente_max_2 ,msi, pulse_width,t_subida, t_bajada,channels = (7,6))
     programa.start()
-    time.sleep(programa.tiempo + 1)
+    print("iniciado")
+    time.sleep(tiempo + 1)
+    print("terminado")
     ch1,ch2=programa.stop()
-    plt.title("Estimulación")
+    #plt.title(f"Cadencia: {cadency}, tiempo programado: {tiempo}, tiempo real de ejecución {-open_loop.inicio+open_loop.fin:.3}")
     plt.step(ch1[0],ch1[1],label="ch1")
     plt.step(ch2[0],ch2[1],label="ch2")
     plt.xlabel("tiempo [segundos]")

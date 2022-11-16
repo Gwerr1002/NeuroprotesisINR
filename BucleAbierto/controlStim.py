@@ -42,7 +42,7 @@ class CntrlStim(Stimulator):
             if platform.system() == 'Windows':
                 port_name = 'COM'
             elif platform.system() == 'Linux':
-                port_name = 'ttyUSB'
+                port_name = 'ttyUSB'#ttyUSB
             #Escanea el puerto en busca del ttyUSB0 (Puerto USB donde está conectado el rehastim)
             for p in list_ports.comports():
                 if port_name in p[0]:
@@ -53,9 +53,9 @@ class CntrlStim(Stimulator):
             #---------------------------------------------------------------------
             #Llamar al metodo __init__ de la clase Stimulator
             super().__init__(puerto_info[0])
-            p_num = super().wait_for_packet(super().INIT)
+            #p_num = super().wait_for_packet(super().INIT)
             # y manda INITACK
-            super().send_packet(super().INITACK, init_packet_number=p_num)
+            #super().send_packet(super().INITACK, init_packet_number=p_num)
             print("Conexion completada")
             #---------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ class CntrlStim(Stimulator):
             print("Puerto no encontrado")
             print(a)
 
-    def sendSignal(self, canal, vector= trapezoidal_prueba):
+    def sendSignal(self, canal, vector):
         """
         Envía una secuencia de corrientes contenidas en una lista. Con una frecuencia
         1/MSI, con el modo single pulse.
