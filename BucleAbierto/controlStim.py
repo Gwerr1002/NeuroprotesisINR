@@ -63,28 +63,25 @@ class CntrlStim(Stimulator):
             print("Puerto no encontrado")
             print(a)
 
-    def sendSignal(self, canal, vector):
+    def sendSignal(self, vector):
         """
         Envía una secuencia de corrientes contenidas en una lista. Con una frecuencia
         1/MSI, con el modo single pulse.
 
         Parameters
         ----------
-        canal : int
-            Indique el canal a usar como un entero del 0 al 7, en el cual el cero
-            corresponde al canal 1 y el 7 al canal 8
-        vector : list, optional
+        vector : list
             Es la secuencia de estimulación, cada entrada de la lista debe contener
-            una tupla de la forma (pw,msi,c), donde pw es el ancho de pulso, c es la
-            msi es el main stimulation interval
-            corriente a estimular. El valor por defecto es trapezoidal_prueba.
+            una tupla de la forma (pw,msi,c,canal), donde pw es el ancho de pulso, c es la
+            corriente a estimular, el canal es aquel al que se mandará el pulso y el
+            msi es el main stimulation interval.
 
         Returns
         -------
         None.
 
         """
-        for pw,msi,c in vector:
+        for pw,msi,c,canal in vector:
             #Enviar una corriente en el modo de pulso simple, el channel recibe un numero del 0 al 7
             super().send_packet(super().SINGLEPULSE, channel=canal, pulse_width=pw, current=c)
             time.sleep((msi-.8)*1e-3-pw*1e-6)

@@ -55,8 +55,8 @@ class open_loop():
         #calculo del trapecio
         self.t1,self.v1 = getTrapecio(t_ascent,t_descent,t_meseta1,msi,max_current1)
         self.t2,self.v2 = getTrapecio(t_ascent,t_descent,t_meseta2,msi,max_current2)
-        self.vector1=[(pw,msi,c) for c in self.v1] #se le pega el ancho de pulso en us
-        self.vector2=[(pw,msi,c) for c in self.v2]
+        self.vector1=[(pw,msi,c,channels[0]) for c in self.v1] #se le pega el ancho de pulso en us
+        self.vector2=[(pw,msi,c,channels[1]) for c in self.v2]
 
         #Numero de interaciones necesarias para cumplir con el tiempo dado
         self.N = int(round(tiempo/periodo_zancada))
@@ -104,9 +104,9 @@ class open_loop():
         for _ in range(self.N):
             #Thread(target=playsound,args=("sin.wav",)).start()
             self.tch1.append(time.time())
-            self.c_stim.sendSignal(self.channels[0],self.vector1)
+            self.c_stim.sendSignal(self.vector1)
             self.tch2.append(time.time())
-            self.c_stim.sendSignal(self.channels[1],self.vector2)
+            self.c_stim.sendSignal(self.vector2)
             if self.end.is_set():
                 break
         self.c_stim.port.close()

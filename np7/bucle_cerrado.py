@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from playsound import playsound
 
 """
-Configuración de los canales de estimulación, se pueden usar 
+Configuración de los canales de estimulación, se pueden usar
 numeros de 0 al 7. Donde el canal 1 corresponde al 0 y el canal
 8 al al 7
 """
@@ -49,7 +49,8 @@ class closed_loop():
         self.msi = msi
         self.t, self.v = getTrapecio(t_ascent,t_descent,t_top,msi,max_current)
         self.v_reg = self.v
-        self.v = [(pw,c) for c in self.v]
+        self.v1 = [(pw,msi,c,channels[0]) for c in self.v]
+        self.v2 = [(pw,msi,c,channels[1]) for c in self.v]
         self.c_rpi = RPI_cntrl(V1REF,V2REF,V3REF,V4REF)
         #control del bucle
         closed_loop.cntrl.set()
@@ -60,19 +61,19 @@ class closed_loop():
         #configuración y activación de las interrupciones
         self.c_rpi.interrupciones(self.call_interrupt,self.stop,int(self.t[-1]))
         self.c_stim = CntrlStim(msi)
-    
+
     def interrupt_protocol(self,FSR):
         closed_loop.cntrl.clear()
         if (FSR == self.c_rpi.FSR[0] or FSR == self.c_rpi.FSR[1]) and closed_loop.FSR_34:
             closed_loop.FSR_34 = False
             self.tch1.append(time())
             #Thread(target=playsound,args=("sin.wav",)).start()
-            self.c_stim.sendSignal(self.channels[0],self.v)
+            self.c_stim.sendSignal(self.v1)
             closed_loop.FSR_12 = True
         elif (FSR == self.c_rpi.FSR[2] or  FSR == self.c_rpi.FSR[3]) and closed_loop.FSR_12:
             closed_loop.FSR_12 = False
             self.tch2.append(time())
-            self.c_stim.sendSignal(self.channels[1],self.v)
+            self.c_stim.sendSignal(self.v2)
             closed_loop.FSR_34 = True
         closed_loop.cntrl.set()
 
@@ -87,7 +88,7 @@ class closed_loop():
         closed_loop.alive = False
         self.c_stim.exitStim()
         self.c_rpi.GPIO_exit()
-    
+
     def loop(self):
         while closed_loop.alive:
             if closed_loop.cntrl.is_set():
@@ -114,7 +115,7 @@ class closed_loop():
             c2 = append(c2,v)
 
         return (tch1,c1),(tch2,c2)
-    
+
     def plot_chs(self):
         ch1,ch2=self.get_channels()
         plt.title("Estimulación")

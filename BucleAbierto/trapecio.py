@@ -19,16 +19,16 @@ def getTrapecio(t_s, t_b, t_m, msi, c_max):
 
     t_b: int
         tiempo de bajada, debe ser indicado en ms
-    
+
     t_m: int
         tiempo de meseta, debe ser indicado en ms
-    
+
     msi: int
         Main Stimulation Interval
 
-    c_max: int 
+    c_max: int
         corriente máxima, es la corriente de meseta
-    
+
     Returns
     -------
     t: list
@@ -58,7 +58,7 @@ def getTrapecio(t_s, t_b, t_m, msi, c_max):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     #t, prueba = getTrapecio(100,100,100,20,10)
-    t, prueba = getTrapecio(100,100,100,10,15)
+    t, prueba = getTrapecio(200,200,300,20,10)
     print(prueba)
     plt.stem(t,prueba)
     plt.show()
