@@ -51,11 +51,7 @@ c2 = [c for _,msi,c,canal in v if canal == 7]
 
 if __name__ == '__main__':
     prueba = CntrlStim()
-<<<<<<< HEAD
-    for _ in range(5):
-=======
     for _ in range(10):
->>>>>>> 5c01ab7cb74955b2b19e6b765b8390fdc5e26fea
         prueba.sendSignal(v)
     prueba.exitStim()
     
