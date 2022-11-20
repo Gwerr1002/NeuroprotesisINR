@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Guardarcomo</class>
+ <widget class="QDialog" name="Guardarcomo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>554</width>
+    <height>348</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Guardar como</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(33, 33, 46);
+color: rgb(255, 255, 255);
+
+font: 75 16pt &quot;Times New Roman&quot;;</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="Nombre_label">
+     <property name="text">
+      <string>Nombre del paciente</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="nombre_edit"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="edad_label">
+     <property name="text">
+      <string>Edad</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="edad_edit"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="peso_label">
+     <property name="text">
+      <string>Peso</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="peso_edit"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="estatura_label">
+     <property name="text">
+      <string>Estatura</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="estatura_edit"/>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="pushButton">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(158, 133, 255);
+font: 75 16pt &quot;Times New Roman&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Aceptar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(158, 133, 255);
+font: 75 16pt &quot;Times New Roman&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Cancelar</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

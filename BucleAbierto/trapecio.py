@@ -3,7 +3,7 @@ Created on Monday Oct 30 23:38:00 2022
 
 @author: Gerardo Ortíz Montúfar
 
-Aquí solo se define el metodo para el cálculo del trapecio
+Se define el metodo para el cálculo del trapecio
 
 """
 from numpy import array
