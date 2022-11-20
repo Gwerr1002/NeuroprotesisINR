@@ -44,17 +44,6 @@ def getgraf_trapecio_traslapado(v,msi,traslape):
     return (t1,c1), (t2,c2)
 
 if __name__ == '__main__':
-<<<<<<< Updated upstream
-    prueba = CntrlStim()
-    for _ in range(10):
-        prueba.sendSignal(v)
-    prueba.exitStim()
-    
-    plt.step(t1,c1)
-    plt.step(t2,c2)
-    plt.show()
-    
-=======
     import matplotlib.pyplot as plt
     msi = 20
     pw = 300
@@ -64,4 +53,3 @@ if __name__ == '__main__':
     plt.step(t1,c1)
     plt.step(t2,c2)
     plt.show()
->>>>>>> Stashed changes
