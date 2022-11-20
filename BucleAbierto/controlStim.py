@@ -53,9 +53,9 @@ class CntrlStim(Stimulator):
             #---------------------------------------------------------------------
             #Llamar al metodo __init__ de la clase Stimulator
             super().__init__(puerto_info[0])
-            #p_num = super().wait_for_packet(super().INIT)
+            p_num = super().wait_for_packet(super().INIT)
             # y manda INITACK
-            #super().send_packet(super().INITACK, init_packet_number=p_num)
+            super().send_packet(super().INITACK, init_packet_number=p_num)
             print("Conexion completada")
             #---------------------------------------------------------------------
 

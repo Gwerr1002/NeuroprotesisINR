@@ -32,8 +32,8 @@ Parámetros de la secuencia de estimulación.
 
 cadency = 30
 dutycycle = .5
-corriente_max_1 = 10
-corriente_max_2 = 10
+corriente_max_1 = 20 #canal 8
+corriente_max_2 = 14 #canal 7
 msi = 20
 pulse_width = 400
 t_subida = 100
