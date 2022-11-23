@@ -17,26 +17,31 @@ Parámetros de la secuencia de estimulación.
     + candency: cadencia indicada en zancadas por minuto
     + duty_cycle: ciclo de trabajo de cada trapecio, 1 equivale al 100%
                 en terminos del inverso de la cadencia
-    + corriente_max: corriente máxima del trapecio en milliamperes
+    + corriente_max1: corriente máxima del canal 1 del trapecio en milliamperes
+    + corriente_max2: corriente máxima del canal 2 del trapecio en milliamperes
     + msi : Main Stimulation Interval, debe indicarse en millisegundos, el mínimo es de 8ms.
             Por motivos de la aplicación se debe cuidar que no supere el tiempo de WATCHDOG
             que es de 1200 ms
     + pulse_width: Ancho de pulso en microsegundos [0,500 us]
     + t_subida: El tiempo de subida que requiere el trapecio en millisegundos
     + t_bajada: Tiempo de bajada del trapecio en millisegundos
+    + tiempo:  Es el tiempo total de la sesión en segundos. Se debe tomar en cuenta
+    que este parámetro dado no será el tiempo exacto, ya que se hará un cálculo
+    de cuantos trapecios son necesarios para cumplir con este tiempo aproximadamente.
 """
 
 cadency = 30
 dutycycle = .5
-corriente_max = 10
+corriente_max_1 = 20 #canal 8
+corriente_max_2 = 14 #canal 7
 msi = 20
 pulse_width = 400
 t_subida = 100
 t_bajada = 100
+tiempo = 13.5 #En segundos
 
 class open_loop():
-    
-    def __init__(self, cadency, dutycycle, max_current,msi, pw,t_ascent, t_descent,channels = (6,7)):
+    def __init__(self,tiempo, cadency, dutycycle, max_current1,max_current2,msi, pw,t_ascent, t_descent,channels = (6,7)):
 
         #canales del estimulador que se usaran
         self.channels = channels
@@ -48,10 +53,14 @@ class open_loop():
         t_meseta1 = apoyo*1e+3-(t_subida+t_bajada)
         t_meseta2 = balanceo*1e+3-(t_subida+t_bajada)
         #calculo del trapecio
-        self.t1,self.v1 = getTrapecio(t_ascent,t_descent,t_meseta1,msi,max_current)
-        self.t2,self.v2 = getTrapecio(t_ascent,t_descent,t_meseta2,msi,max_current)
-        self.vector1=[(pw,c) for c in self.v1] #se le pega el ancho de pulso en us
-        self.vector2=[(pw,c) for c in self.v2]
+        self.t1,self.v1 = getTrapecio(t_ascent,t_descent,t_meseta1,msi,max_current1)
+        self.t2,self.v2 = getTrapecio(t_ascent,t_descent,t_meseta2,msi,max_current2)
+        self.vector1=[(pw,msi,c,channels[0]) for c in self.v1] #se le pega el ancho de pulso en us
+        self.vector2=[(pw,msi,c,channels[1]) for c in self.v2]
+
+        #Numero de interaciones necesarias para cumplir con el tiempo dado
+        self.N = int(round(tiempo/periodo_zancada))
+        print(self.N)
 
         #Control del registro de datos (guardar secuencia de estimulación desde el inicio del programa)
         self.t0 = time.time() #inicio del programa
@@ -63,10 +72,9 @@ class open_loop():
         self.end = Event()
 
         #inicializar la conexion con el estimulador y configuración
-        self.c_stim = CntrlStim(msi)
+        self.c_stim = CntrlStim()
 
     def start(self):
-        open_loop.is_alive = True
         self.hilo.start()
 
     def stop(self):
@@ -93,12 +101,15 @@ class open_loop():
         return (tch1,c1),(tch2,c2)
 
     def loop(self):
-        while not self.end.is_set():
-            Thread(target=playsound,args=("sin.wav",)).start()
+        for _ in range(self.N):
+            Thread(target=playsound,args=("sin440.wav",)).start()
             self.tch1.append(time.time())
-            self.c_stim.sendSignal(self.channels[0],self.vector1)
+            self.c_stim.sendSignal(self.vector1)
+            Thread(target=playsound,args=("sin880.wav",)).start()
             self.tch2.append(time.time())
-            self.c_stim.sendSignal(self.channels[1],self.vector2)
+            self.c_stim.sendSignal(self.vector2)
+            if self.end.is_set():
+                break
         self.c_stim.port.close()
         self.c_stim.exitStim()
 
@@ -108,11 +119,13 @@ class open_loop():
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    programa = open_loop(cadency, dutycycle, corriente_max,msi, pulse_width,t_subida, t_bajada,channels = (7,6))
+    programa = open_loop(tiempo,cadency, dutycycle, corriente_max_1,corriente_max_2 ,msi, pulse_width,t_subida, t_bajada,channels = (7,6))
     programa.start()
-    time.sleep(1800)
+    print("iniciado")
+    time.sleep(tiempo + 1)
+    print("terminado")
     ch1,ch2=programa.stop()
-    plt.title("Estimulación")
+    #plt.title(f"Cadencia: {cadency}, tiempo programado: {tiempo}, tiempo real de ejecución {-open_loop.inicio+open_loop.fin:.3}")
     plt.step(ch1[0],ch1[1],label="ch1")
     plt.step(ch2[0],ch2[1],label="ch2")
     plt.xlabel("tiempo [segundos]")

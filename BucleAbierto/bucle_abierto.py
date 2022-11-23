@@ -102,9 +102,10 @@ class open_loop():
 
     def loop(self):
         for _ in range(self.N):
-            #Thread(target=playsound,args=("sin.wav",)).start()
+            Thread(target=playsound,args=("sin440.wav",)).start()
             self.tch1.append(time.time())
             self.c_stim.sendSignal(self.vector1)
+            Thread(target=playsound,args=("sin880.wav",)).start()
             self.tch2.append(time.time())
             self.c_stim.sendSignal(self.vector2)
             if self.end.is_set():

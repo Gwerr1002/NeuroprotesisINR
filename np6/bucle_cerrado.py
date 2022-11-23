@@ -36,7 +36,8 @@ t_subida = 300
 t_meseta = 300
 t_bajada = 300
 pulse_width = 350
-corriente_max = 10
+corriente_max1 = 20
+corriente_max2 = 10
 
 class closed_loop():
     cntrl=Event()
@@ -44,12 +45,15 @@ class closed_loop():
     FSR_12 = False #variable que indica si el sensor 1 o 2 fue presionado
     FSR_34 = True #variable que indica si el sensor 3 o 4 fue presionado, se inicializa como True por motivos de la aplicacion
 
-    def __init__(self,t_ascent,t_descent,t_top,max_current,msi,pw,V1REF,V2REF,V3REF,V4REF,channels = (6,7)):
+    def __init__(self,t_ascent,t_descent,t_top,max_current1,max_current2,msi,pw,V1REF,V2REF,V3REF,V4REF,channels = (6,7)):
         self.channels = channels
         self.msi = msi
-        self.t, self.v = getTrapecio(t_ascent,t_descent,t_top,msi,max_current)
-        self.v_reg = self.v
-        self.v = [(pw,c) for c in self.v]
+        self.t, self.v1 = getTrapecio(t_ascent,t_descent,t_top,msi,max_current1)
+        self.t, self.v2 = getTrapecio(t_ascent,t_descent,t_top,msi,max_current2)
+        self.v_reg1 = self.v1
+        self.v_reg2 = self.v2
+        self.v1 = [(pw,msi,c,channels[0]) for c in self.v1]
+        self.v2 = [(pw,msi,c,channels[0]) for c in self.v2]
         self.c_rpi = RPI_cntrl(V1REF,V2REF,V3REF,V4REF)
         #control del bucle
         closed_loop.cntrl.set()
@@ -59,20 +63,21 @@ class closed_loop():
         self.tch2 = []
         #configuración y activación de las interrupciones
         self.c_rpi.interrupciones(self.call_interrupt,self.stop,int(self.t[-1]))
-        self.c_stim = CntrlStim(msi)
+        self.c_stim = CntrlStim()
     
     def interrupt_protocol(self,FSR):
         closed_loop.cntrl.clear()
         if (FSR == self.c_rpi.FSR[0] or FSR == self.c_rpi.FSR[1]) and closed_loop.FSR_34:
             closed_loop.FSR_34 = False
             self.tch1.append(time())
-            Thread(target=playsound,args=("sin.wav",)).start()
-            self.c_stim.sendSignal(self.channels[0],self.v)
+            Thread(target=playsound,args=("sin440.wav",)).start()
+            self.c_stim.sendSignal(self.v1)
             closed_loop.FSR_12 = True
         elif (FSR == self.c_rpi.FSR[2] or  FSR == self.c_rpi.FSR[3]) and closed_loop.FSR_12:
             closed_loop.FSR_12 = False
             self.tch2.append(time())
-            self.c_stim.sendSignal(self.channels[1],self.v)
+            Thread(target=playsound,args=("sin880.wav",)).start()
+            self.c_stim.sendSignal(self.v2)
             closed_loop.FSR_34 = True
         closed_loop.cntrl.set()
 
@@ -99,7 +104,8 @@ class closed_loop():
     def get_channels(self):
         t = append(0,self.t)
         t = append(t,self.t[-1]+self.msi)
-        v = append(append(0,self.v_reg),0)
+        v1 = append(append(0,self.v_reg1),0)
+        v2 = append(append(0,self.v_reg2),0)
         tch1_reg = [(i-self.t0) for i in self.tch1]
         tch2_reg = [(i-self.t0) for i in self.tch2]
         tch1 = array([0])
@@ -108,10 +114,10 @@ class closed_loop():
         c2 = tch2
         for i in tch1_reg:
             tch1 = append(tch1,t/1000+i)
-            c1 = append(c1,v)
+            c1 = append(c1,v1)
         for i in tch2_reg:
             tch2 = append(tch2,t/1000+i)
-            c2 = append(c2,v)
+            c2 = append(c2,v2)
 
         return (tch1,c1),(tch2,c2)
     
@@ -128,7 +134,7 @@ class closed_loop():
 
 
 if __name__ == "__main__":
-    prog = closed_loop(t_subida,t_bajada,t_meseta,corriente_max,msi,pulse_width,1,1,1,1,(ch1,ch2))
+    prog = closed_loop(t_subida,t_bajada,t_meseta,corriente_max1,corriente_max2,msi,pulse_width,1,1,1,1,(ch1,ch2))
     prog.start()
     while closed_loop.alive:
         pass
