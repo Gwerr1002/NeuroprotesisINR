@@ -16,8 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(33, 33, 46);
 color: rgb(255, 255, 255);
-
-font: 75 16pt &quot;Times New Roman&quot;;</string>
+font: oblique 14pt &quot;Sawasdee&quot;;</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -64,8 +63,7 @@ font: 75 16pt &quot;Times New Roman&quot;;</string>
     <widget class="QPushButton" name="pushButton">
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(158, 133, 255);
-font: 75 16pt &quot;Times New Roman&quot;;</string>
+background-color: rgb(129, 61, 156);</string>
      </property>
      <property name="text">
       <string>Aceptar</string>
@@ -76,8 +74,7 @@ font: 75 16pt &quot;Times New Roman&quot;;</string>
     <widget class="QPushButton" name="pushButton_2">
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(158, 133, 255);
-font: 75 16pt &quot;Times New Roman&quot;;</string>
+background-color: rgb(129, 61, 156);</string>
      </property>
      <property name="text">
       <string>Cancelar</string>

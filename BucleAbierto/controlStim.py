@@ -106,12 +106,12 @@ if __name__ == "__main__":
 
     t,vector = getTrapecio(t_subida,t_bajada,t_meseta,msi,corriente_max)
     print(vector)
-    vector=[(pulse_width,msi,c) for c in vector] #se le pega el ancho de pulso en us
+    vector=[(pulse_width,msi,c,7) for c in vector]
     prueba = CntrlStim()
     try:
         while(True):
-            prueba.sendSignal(6,vector) #canal 8
-            prueba.sendSignal(7,vector) #canal 7
+            prueba.sendSignal(vector) #canal 8
+            prueba.sendSignal(vector) #canal 7
 
     except KeyboardInterrupt:
         print("Protocolo de salida")

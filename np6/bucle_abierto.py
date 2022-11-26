@@ -32,8 +32,8 @@ Parámetros de la secuencia de estimulación.
 
 cadency = 30
 dutycycle = .5
-corriente_max_1 = 20 #canal 8
-corriente_max_2 = 14 #canal 7
+corriente_max_1 = 10 #canal 8
+corriente_max_2 = 10 #canal 7
 msi = 20
 pulse_width = 400
 t_subida = 100
@@ -125,11 +125,11 @@ if __name__ == "__main__":
     time.sleep(tiempo + 1)
     print("terminado")
     ch1,ch2=programa.stop()
-    #plt.title(f"Cadencia: {cadency}, tiempo programado: {tiempo}, tiempo real de ejecución {-open_loop.inicio+open_loop.fin:.3}")
-    plt.step(ch1[0],ch1[1],label="ch1")
-    plt.step(ch2[0],ch2[1],label="ch2")
-    plt.xlabel("tiempo [segundos]")
-    plt.ylabel("corriente [mA]")
+    plt.title(f"Cadencia: {2*cadency}, tiempo programado: {tiempo}, tiempo real de ejecución {programa.tch2[-1]-programa.t0:.3}",fontsize = 12)
+    plt.step(ch1[0],ch1[1],label="ch1",linewidth = 2)
+    plt.step(ch2[0],ch2[1],label="ch2", linewidth = 2)
+    plt.xlabel("tiempo [segundos]",fontsize = 10)
+    plt.ylabel("corriente [mA]",fontsize = 10)
     plt.legend()
     plt.grid()
     plt.show()

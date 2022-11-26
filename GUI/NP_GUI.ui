@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>693</width>
-    <height>861</height>
+    <width>892</width>
+    <height>966</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <normaloff>INR_1.png</normaloff>INR_1.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">font: 10pt &quot;Caviar Dreams&quot;;</string>
+   <string notr="true">font: italic 14pt &quot;Nimbus Roman&quot;;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -29,7 +29,7 @@ color: rgb(255, 255, 255);</string>
     <item>
      <widget class="QLabel" name="INR_label">
       <property name="styleSheet">
-       <string notr="true">font: 20pt &quot;Caviar Dreams&quot;;
+       <string notr="true">font: 75 oblique 20pt &quot;Sawasdee&quot;;
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
@@ -66,24 +66,24 @@ color: rgb(255, 255, 255);</string>
      <widget class="QTabWidget" name="tabWidget">
       <property name="font">
        <font>
-        <family>Caviar Dreams</family>
+        <family>Sawasdee</family>
         <pointsize>10</pointsize>
-        <weight>50</weight>
-        <italic>false</italic>
+        <weight>9</weight>
+        <italic>true</italic>
         <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 126);
-font: 10pt &quot;Caviar Dreams&quot;;</string>
+       <string notr="true">font: 75 oblique 10pt &quot;Sawasdee&quot;;
+color: rgb(255, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="bucle_abierto_wdgt">
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
-font: 14pt &quot;Times New Roman&quot;;</string>
+font: 10pt &quot;Times New Roman&quot;;</string>
        </property>
        <attribute name="title">
         <string>Bucle Abierto</string>
@@ -110,14 +110,14 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QLabel" name="t_subida_label">
+         <widget class="QLabel" name="t_subida_label_ba">
           <property name="text">
            <string>Tiempo de subida [ms]</string>
           </property>
          </widget>
         </item>
         <item row="0" column="3">
-         <widget class="QSpinBox" name="t_subida_box">
+         <widget class="QSpinBox" name="t_subida_box_ba">
           <property name="maximum">
            <number>1000</number>
           </property>
@@ -150,14 +150,14 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLabel" name="t_bajada_label">
+         <widget class="QLabel" name="t_bajada_label_ba">
           <property name="text">
            <string>Tiempo de bajada [ms]</string>
           </property>
          </widget>
         </item>
         <item row="1" column="3">
-         <widget class="QSpinBox" name="t_bajada_box">
+         <widget class="QSpinBox" name="t_bajada_box_ba">
           <property name="maximum">
            <number>1000</number>
           </property>
@@ -170,14 +170,14 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="msi_label">
+         <widget class="QLabel" name="msi_label_ba">
           <property name="text">
            <string>MSI [ms]</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QSpinBox" name="msi_box">
+         <widget class="QSpinBox" name="msi_box_ba">
           <property name="minimum">
            <number>8</number>
           </property>
@@ -193,24 +193,24 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLabel" name="current_max_ch1_label">
+         <widget class="QLabel" name="current_max_ch1_label_ba">
           <property name="text">
            <string>Corriente máxima CH1 [mA]</string>
           </property>
          </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QSpinBox" name="current_max_ch1_box"/>
+         <widget class="QSpinBox" name="current_max_ch1_box_ba"/>
         </item>
         <item row="3" column="0">
-         <widget class="QLabel" name="pw_label">
+         <widget class="QLabel" name="pw_label_ba">
           <property name="text">
            <string>Pulse width [ns]</string>
           </property>
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QSpinBox" name="pw_box">
+         <widget class="QSpinBox" name="pw_box_ba">
           <property name="maximum">
            <number>500</number>
           </property>
@@ -223,24 +223,24 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="QLabel" name="current_max_ch2_label">
+         <widget class="QLabel" name="current_max_ch2_label_ba">
           <property name="text">
            <string>Corriente máxima CH2 [mA]</string>
           </property>
          </widget>
         </item>
         <item row="3" column="3">
-         <widget class="QSpinBox" name="current_max_ch2_box"/>
+         <widget class="QSpinBox" name="current_max_ch2_box_ba"/>
         </item>
         <item row="4" column="0">
-         <widget class="QLabel" name="CH1_label">
+         <widget class="QLabel" name="CH1_label_ba">
           <property name="text">
            <string>CH1</string>
           </property>
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QSpinBox" name="ch1_box">
+         <widget class="QSpinBox" name="ch1_box_ba">
           <property name="minimum">
            <number>1</number>
           </property>
@@ -253,24 +253,24 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QLabel" name="t_total_stim_label">
+         <widget class="QLabel" name="t_total_stim_label_ba">
           <property name="text">
            <string>Tiempo de estimulación [seg]</string>
           </property>
          </widget>
         </item>
         <item row="4" column="3">
-         <widget class="QDoubleSpinBox" name="t_tot_stim_box"/>
+         <widget class="QDoubleSpinBox" name="t_tot_stim_box_ba"/>
         </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="CH2_label">
+         <widget class="QLabel" name="CH2_label_ba">
           <property name="text">
            <string>CH2</string>
           </property>
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QSpinBox" name="ch2_box">
+         <widget class="QSpinBox" name="ch2_box_ba">
           <property name="minimum">
            <number>1</number>
           </property>
@@ -283,11 +283,10 @@ font: 14pt &quot;Times New Roman&quot;;</string>
          </widget>
         </item>
         <item row="5" column="3">
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="IniciarBA">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(158, 133, 255);
-font: 75 16pt &quot;Times New Roman&quot;;</string>
+background-color: rgb(129, 61, 156);</string>
           </property>
           <property name="text">
            <string>Iniciar</string>
@@ -297,19 +296,350 @@ font: 75 16pt &quot;Times New Roman&quot;;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="tasapado_wdgt">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Times New Roman&quot;;</string>
+       </property>
        <attribute name="title">
         <string>Trapecio traslapado</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="7" column="3">
+         <widget class="QPushButton" name="IniciarTT">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(129, 61, 156);</string>
+          </property>
+          <property name="text">
+           <string>Iniciar</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QSpinBox" name="t_bajadaCH2_box_tt">
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="ch1_box_tt">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>8</number>
+          </property>
+          <property name="value">
+           <number>7</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QSpinBox" name="tmeseta_ch2_box">
+          <property name="maximum">
+           <number>3000</number>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="tmeseta_ch1_label">
+          <property name="text">
+           <string>Tiempo de meseta CH1 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QSpinBox" name="current_max_ch2_box"/>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="current_max_ch2_label">
+          <property name="text">
+           <string>Corriente máxima CH2 [mA]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="t_subidaCH2_label_tt">
+          <property name="text">
+           <string>Tiempo de subida CH2 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="t_bajadaCH2_label_tt">
+          <property name="text">
+           <string>Tiempo de bajada CH2 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QSpinBox" name="t_subidaCH2_box_tt">
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="msi_label_tt">
+          <property name="text">
+           <string>MSI [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3">
+         <widget class="QSpinBox" name="No_iter_tt">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="ch2_box_tt">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>8</number>
+          </property>
+          <property name="value">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="pw_label_tt">
+          <property name="text">
+           <string>Pulse width [ns]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="t_bajadaCH1_box_tt">
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="CH2_label_tt">
+          <property name="text">
+           <string>CH2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="t_bajadaCH1_label_tt">
+          <property name="text">
+           <string>Tiempo de bajada CH1 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QSpinBox" name="current_max_ch1_box"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="tmeseta_ch2_label">
+          <property name="text">
+           <string>Tiempo de meseta CH2 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="t_subidaCH1_box_tt">
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="current_max_ch1_label">
+          <property name="text">
+           <string>Corriente máxima CH1 [mA]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="msi_box_tt">
+          <property name="minimum">
+           <number>8</number>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>20</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="pw_box_tt">
+          <property name="maximum">
+           <number>500</number>
+          </property>
+          <property name="singleStep">
+           <number>50</number>
+          </property>
+          <property name="value">
+           <number>400</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QLabel" name="No_iter_ba_label">
+          <property name="text">
+           <string>No. repeticiones</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="tmeseta_ch1_box"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="t_subidaCH1_label_tt">
+          <property name="text">
+           <string>Tiempo de subida CH1 [ms]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="CH1_label_tt">
+          <property name="text">
+           <string>CH1</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="from_file_wdgt">
        <attribute name="title">
         <string>Cargar de archivo</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QTextEdit" name="MSJ_usr">
+          <property name="styleSheet">
+           <string notr="true">border-color: rgb(64, 191, 186);</string>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sawasdee'; font-size:10pt; font-weight:72; font-style:italic;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Modo usuario:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Deberá cargar un archivo JSON, MAT o NPY que contenga la secuencia de estimulación definida por el usuario en forma de listas de Python. El archivo deberá contener un diccionario con listas o arreglos de tuplas con el siguiente formato:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;[ (pulse_width_1,msi_1,current_1,channel) , &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(pulse_width_2,msi_2,current_2,channel) , ... , (pulse_width_n,msi_n,current_n,channel) &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="0">
+           <widget class="QLabel" name="No_ite_usr_label">
+            <property name="text">
+             <string>No. repeticiones</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="IniciarTT_2">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(129, 61, 156);</string>
+            </property>
+            <property name="text">
+             <string>Iniciar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="No_iter_usr">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="KComboBox" name="kcombobox"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButton">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(8, 158, 79);
+color: rgb(3, 42, 8);</string>
+            </property>
+            <property name="text">
+             <string>Cargar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="KLineEdit" name="path">
+            <property name="styleSheet">
+             <string notr="true">font: 75 oblique 12pt &quot;Tlwg Typo&quot;;
+background-color: rgb(119, 118, 123);</string>
+            </property>
+            <property name="placeholderText">
+             <string>Path: ubicación del archivo</string>
+            </property>
+            <property name="urlDropsEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="clickMessage">
+             <string>Path: ubicación del archivo</string>
+            </property>
+            <property name="showClearButton" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
     <item>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
+     <widget class="QTextEdit" name="textEdit">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -318,14 +648,18 @@ font: 75 16pt &quot;Times New Roman&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(25, 25, 66);
-font: 12pt &quot;Times New Roman&quot;;
+font: 75 oblique 10pt &quot;Tlwg Typo&quot;;
 color: rgb(204, 199, 255);</string>
       </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
-      <property name="plainText">
-       <string>Status:</string>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Tlwg Typo'; font-size:10pt; font-weight:72; font-style:italic;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -336,8 +670,8 @@ color: rgb(204, 199, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>693</width>
-     <height>26</height>
+     <width>892</width>
+     <height>40</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -378,6 +712,18 @@ color: rgb(204, 199, 255);</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
