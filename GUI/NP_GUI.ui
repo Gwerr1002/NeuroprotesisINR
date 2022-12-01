@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>892</width>
-    <height>966</height>
+    <height>994</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -570,21 +570,21 @@ p, li { white-space: pre-wrap; }
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="1" column="0">
-           <widget class="QLabel" name="No_ite_usr_label">
-            <property name="text">
-             <string>No. repeticiones</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="IniciarTT_2">
+          <item row="3" column="1">
+           <widget class="QPushButton" name="Iniciar_fromfile">
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(129, 61, 156);</string>
             </property>
             <property name="text">
              <string>Iniciar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="No_ite_usr_label">
+            <property name="text">
+             <string>No. repeticiones</string>
             </property>
            </widget>
           </item>
@@ -598,11 +598,8 @@ background-color: rgb(129, 61, 156);</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="KComboBox" name="kcombobox"/>
-          </item>
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="load_file">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(8, 158, 79);
 color: rgb(3, 42, 8);</string>
@@ -612,23 +609,17 @@ color: rgb(3, 42, 8);</string>
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QComboBox" name="SelectStim"/>
+          </item>
           <item row="0" column="0">
-           <widget class="KLineEdit" name="path">
+           <widget class="QLineEdit" name="path">
             <property name="styleSheet">
              <string notr="true">font: 75 oblique 12pt &quot;Tlwg Typo&quot;;
 background-color: rgb(119, 118, 123);</string>
             </property>
-            <property name="placeholderText">
-             <string>Path: ubicación del archivo</string>
-            </property>
-            <property name="urlDropsEnabled">
-             <bool>true</bool>
-            </property>
-            <property name="clickMessage">
-             <string>Path: ubicación del archivo</string>
-            </property>
-            <property name="showClearButton" stdset="0">
-             <bool>true</bool>
+            <property name="text">
+             <string>Path: Ubicación del archivo</string>
             </property>
            </widget>
           </item>
@@ -712,18 +703,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
