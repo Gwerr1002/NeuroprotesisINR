@@ -8,11 +8,15 @@ def getTrapecio_traslapado(t_s1,t_b1,t_m1,cmax1,t_s2,t_b2,t_m2,cmax2,t_traslape,
     v,i,j = [],0,0
     traslape=where(t<=t_traslape)[0][-1] #Muestra en la cual se traslapa (aproximado acorde con msi y t_traslape)
     TOT= len(v1)+len(v2)
+    cntrl = True
     while len(v) != TOT:
         if i<traslape:
             v.append((pw,msi,v1[i],canales[0]))
             i += 1
         elif i>=traslape and i<len(v1):
+            if cntrl:
+                v[-1] = (pw,msi/2,v[-1][2],v[-1][3])
+                cntrl = False
             v.append((pw,msi/2,v2[j],canales[1]))
             j += 1
             v.append((pw,msi/2,v1[i],canales[0]))

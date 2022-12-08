@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1214</width>
-    <height>1017</height>
+    <height>1044</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>INR_1.png</normaloff>INR_1.png</iconset>
+    <normaloff>../../../../.designer/backup/INR_1.png</normaloff>../../../../.designer/backup/INR_1.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">font: italic 14pt &quot;Nimbus Roman&quot;;</string>
@@ -29,7 +29,7 @@ color: rgb(255, 255, 255);</string>
     <item>
      <widget class="QLabel" name="INR_label">
       <property name="styleSheet">
-       <string notr="true">font: 75 oblique 20pt &quot;Sawasdee&quot;;
+       <string notr="true">font: 75 oblique 15pt &quot;Sawasdee&quot;;
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
@@ -48,7 +48,7 @@ color: rgb(255, 255, 255);</string>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>300</height>
+        <height>375</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -761,8 +761,8 @@ background-color: rgb(129, 61, 156);</string>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sawasdee'; font-size:10pt; font-weight:72; font-style:italic;&quot;&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Modo usuario:&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Deberá cargar un archivo JSON, MAT o NPY que contenga la secuencia de estimulación definida por el usuario en forma de listas de Python. El archivo deberá contener un diccionario con listas o arreglos de tuplas con el siguiente formato:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;[ (pulse_width_1,msi_1,current_1,channel) , &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(pulse_width_2,msi_2,current_2,channel) , ... , (pulse_width_n,msi_n,current_n,channel) &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Deberá cargar un archivo JSON, MAT o NPY que contenga la secuencia de estimulación definida por el usuario en forma de listas de Python. El archivo deberá contener un diccionario con listas con el siguiente formato:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;[ [pulse_width_1,msi_1,current_1,channel] , [&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;pulse_width_2,msi_2,current_2,channel] , ... , [pulse_width_n,msi_n,current_n,channel] &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;]&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>

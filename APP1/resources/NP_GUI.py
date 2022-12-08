@@ -27,13 +27,13 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.INR_label = QtWidgets.QLabel(self.centralwidget)
-        self.INR_label.setStyleSheet("font: 75 oblique 20pt \"Sawasdee\";\n"
+        self.INR_label.setStyleSheet("font: 75 oblique 15pt \"Sawasdee\";\n"
 "color: rgb(255, 255, 255);")
         self.INR_label.setAlignment(QtCore.Qt.AlignCenter)
         self.INR_label.setObjectName("INR_label")
         self.verticalLayout.addWidget(self.INR_label)
         self.Graf = QtWidgets.QFrame(self.centralwidget)
-        self.Graf.setMinimumSize(QtCore.QSize(0, 300))
+        self.Graf.setMinimumSize(QtCore.QSize(0, 375))
         self.Graf.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Graf.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.Graf.setFrameShadow(QtWidgets.QFrame.Raised)
