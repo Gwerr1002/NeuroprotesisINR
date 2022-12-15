@@ -8,6 +8,7 @@ from resources.NP_GUI import Ui_MainWindow, QtWidgets, QtCore
 from resources.bucle_abierto import open_loop, playsound, time
 from resources.controlStim import CntrlStim
 from resources.trapecio_traslapado import getTrapecio_traslapado
+from resources.from_file import load
 from threading import Thread, Event
 
 
@@ -31,6 +32,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.buttonBA.clicked.connect(self.iniciarBA)
         #activar eventos trapecio traslapado
         self.ui.buttonTT.clicked.connect(self.iniciarTT)
+        #activar eventos de modo usuario (cargar de archivo)
+        self.ui.button_load_file.clicked.connect(self.cargarDic)
+        self.ui.button_fromfile.clicked.connect(self.iniciarUSRMODE)
 
     def updateNumRepeticionesBA(self):
         repeticiones = int(round(self.ui.t_tot_stim_box_ba.value()*self.ui.cadency_box.value()/60))
@@ -126,12 +130,39 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.buttonTT.setText(self._translate("MainWindow", "Iniciar"))
         self.ui.buttonTT.disconnect()
         self.ui.buttonTT.clicked.connect(self.iniciarTT)
+    
+    def cargarDic(self):
+        self.d_vectores = load(self.ui.path.text())
+        self.ui.SelectStim.clear()
+        self.ui.path.clear()
+        self.ui.SelectStim.addItems([self._translate("MainWindow", key) for key in self.d_vectores])
+    
+    def iniciarUSRMODE(self):
+        key = self.ui.SelectStim.currentText()
+        vector = self.d_vectores[key]
+        self.ch1_actual = int(vector[0][-1]+1)
+        self.programa = loop_signal(vector,self.ui.No_iter_usr_box.value())
+        self.ui.button_fromfile.setText(self._translate("MainWindow", "Parar"))
+        self.ui.button_fromfile.disconnect()
+        self.ui.button_fromfile.clicked.connect(self.programa.stop)
+        self.programa.fin.connect(self.finUSRMODE)
+        self.programa.stimuli.connect(self.update_canales)
+        self.programa.start()
+        self.ui.Status_txt.clear()
+        self.ui.Status_txt.insertPlainText("Inicializado\n")
+
+    def finUSRMODE(self,msj):
+        self.ui.Status_txt.insertPlainText(msj)
+        self.update_canvas()
+        self.t1,self.t2,self.ch1,self.ch2=[],[],[],[]
+        self.ui.button_fromfile.setText(self._translate("MainWindow", "Iniciar"))
+        self.ui.button_fromfile.disconnect()
+        self.ui.button_fromfile.clicked.connect(self.iniciarUSRMODE)
 
     def update_canales(self,tiempo,c,canal):
         t = tiempo - self.programa.t0
-        print(self.ch1_actual,canal)
+        #print(canal,self.ch1_actual-1)
         if canal == self.ch1_actual-1:
-            print("Si paso")
             self.ch1.append(c)
             self.t1.append(t)
         else:
@@ -141,8 +172,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def update_canvas(self):
         ax = self.ui.GrafCanvas.axes[0]
         ax.clear()
-        ax.stem(self.t1,self.ch1,label = "CH1",linefmt='green',markerfmt='go')
-        ax.stem(self.t2,self.ch2,label = "CH2")
+        m = int()
+        if len(self.ch1) != 0:
+            ax.stem(self.t1,self.ch1,label = "CH1",linefmt='green',markerfmt='go')
+            m = max(self.ch1)
+        if len(self.ch2) != 0:
+            ax.stem(self.t2,self.ch2,label = "CH2")
+            m = max([m,max(self.ch2)])
+        ax.set_ylim(0,m+m*.2)
         ax.legend()
         ax.grid()
         self.ui.GrafCanvas.draw()
@@ -161,6 +198,7 @@ class loop_signal(QtCore.QObject):
 
         #inicializar la conexion con el estimulador y configuración
         self.t0 = time.time()
+        playsound("resources/inicio.wav")
         self.c_stim = CntrlStim()
     
     def start(self):
@@ -170,7 +208,6 @@ class loop_signal(QtCore.QObject):
         self.end.set()
 
     def loop(self):
-        playsound("resources/inicio.wav")
         time.sleep(.5)
         self.t0 = time.time()
         for _ in range(self.N):

@@ -67,6 +67,7 @@ class open_loop(QtCore.QObject):
         self.end = Event()
 
         #inicializar la conexion con el estimulador y configuración
+        playsound("resources/inicio.wav")
         self.c_stim = CntrlStim()
 
     def start(self):
@@ -76,7 +77,6 @@ class open_loop(QtCore.QObject):
         self.end.set()
 
     def loop(self):
-        playsound("resources/inicio.wav")
         time.sleep(.5)
         self.t0 = time.time()
         for _ in range(self.N):

@@ -31,7 +31,7 @@ def save(path,name,dic):
         npsave(name,dic)
     elif ext == 'json':
         with open(name,'w') as f:
-            f.write(json.dumps(dic))
+            f.write(json.dumps({key:[tuple(int(i) for i in tup) for tup in dic[key]] for key in dic}))
             f.close()
     elif ext == 'mat':
         savemat(name,dic)
@@ -52,22 +52,38 @@ class ArchivoDictError(Exception):
         return msj
 
 class AnchoPulsoError(Exception):
+    def __init__(self):
+        super().__init__()
+        print(self.error_msj())
+
     def error_msj(self):
         return "EL ancho de pulso debe ser un entero mayor a 0 ns y menor que 500 ns"
 
 class MSIError(Exception):
+    def __init__(self):
+        super().__init__()
+        print(self.error_msj())
     def error_msj(self):
         return "El msi debe ser un entero mayor que 10 ms y menor que 100 ms"
 
 class CorrienteError(Exception):
+    def __init__(self):
+        super().__init__()
+        print(self.error_msj())
     def error_msj(self):
         return "La corriente no debe ser negativa y debe ser un entero mayor que 120 mA"
 
 class CanalError(Exception):
+    def __init__(self):
+        super().__init__()
+        print(self.error_msj())
     def error_msj(self):
         return "Sólo se pueden seleccionar canales del 0 al 7"
 
 class ExtensionError(Exception):
+    def __init__(self):
+        super().__init__()
+        print(self.error_msj())
     def error_msj(self):
         return "Solo se admiten archivos npy, json, mat"
 
